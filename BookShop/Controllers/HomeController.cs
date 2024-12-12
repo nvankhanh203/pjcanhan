@@ -1,31 +1,44 @@
-using System.Diagnostics;
+using BookShoppingCartMvcUI.Models;
+using BookShoppingCartMvcUI.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using BookShop.Models;
+using System.Diagnostics;
 
-namespace BookShop.Controllers;
-
-public class HomeController : Controller
+namespace BookShoppingCartMvcUI.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly ILogger<HomeController> _logger;
+        private readonly IHomeRepository _homeRepository;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(ILogger<HomeController> logger, IHomeRepository homeRepository)
+        {
+            _homeRepository = homeRepository;
+            _logger = logger;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public async Task<IActionResult> Index(string sterm="",int genreId=0)
+        {
+            IEnumerable<Book> books = await _homeRepository.GetBooks(sterm, genreId);
+            IEnumerable<Genre> genres = await _homeRepository.Genres();
+            BookDisplayModel bookModel = new BookDisplayModel
+            {
+              Books=books,
+              Genres=genres,
+              STerm=sterm,
+              GenreId=genreId
+            };
+            return View(bookModel);
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
