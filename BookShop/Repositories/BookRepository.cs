@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookShoppingCartMvcUI.Data;
+using BookShoppingCartMvcUI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookShoppingCartMvcUI.Repositories
 {

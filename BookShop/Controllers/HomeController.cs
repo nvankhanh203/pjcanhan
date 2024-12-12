@@ -1,3 +1,4 @@
+using BookShop.Models;
 using BookShoppingCartMvcUI.Models;
 using BookShoppingCartMvcUI.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;

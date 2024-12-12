@@ -1,3 +1,6 @@
+using BookShoppingCartMvcUI.Models;
+using BookShoppingCartMvcUI.Models.DTOs;
+using BookShoppingCartMvcUI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,8 @@
 using BookShoppingCartMvcUI;
+using BookShoppingCartMvcUI.Models;
+using BookShoppingCartMvcUI.Models.DTOs;
+using BookShoppingCartMvcUI.Repositories;
+using BookShoppingCartMvcUI.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +13,7 @@ public class BookController : Controller
     private readonly IBookRepository _bookRepo;
     private readonly IGenreRepository _genreRepo;
     private readonly IFileService _fileService;
+
 
     public BookController(IBookRepository bookRepo, IGenreRepository genreRepo, IFileService fileService)
     {

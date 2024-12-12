@@ -1,5 +1,7 @@
 using BookShoppingCartMvcUI;
-
+using BookShoppingCartMvcUI.Data;
+using BookShoppingCartMvcUI.Repositories;
+using BookShoppingCartMvcUI.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,11 +28,7 @@ builder.Services.AddTransient<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 // Uncomment it when you run the project first time, It will registered an admin
-using (var scope = app.Services.CreateScope())
-{
-    await DbSeeder.SeedDefaultData(scope.ServiceProvider);
-}
-
+//await SeedData.RegisterAdminUser(app);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
