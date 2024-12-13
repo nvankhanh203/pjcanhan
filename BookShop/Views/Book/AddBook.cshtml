@@ -35,11 +35,28 @@
 
         <div class="my-2">
             <label>Image</label>
-            <input type="file" class="form-control" asp-for="ImageFile" />
+            <input type="file" class="form-control" asp-for="ImageFile" onchange="previewImage(event)" />
         </div>
 
+        <div class="my-2">
+            <img id="imagePreview" src="#" alt="Image Preview" style="display:none; max-width:100%;" />
+        </div>
+        
         <div class="my-2">
             <button type="submit" class="btn btn-info">Add</button>
         </div>
     </form>
 </div>
+
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+

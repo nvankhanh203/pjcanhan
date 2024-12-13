@@ -24,8 +24,8 @@ builder.Services.AddTransient<IStockRepository, StockRepository>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
 builder.Services.AddTransient<IFileService, FileService>();
 builder.Services.AddTransient<IBookRepository, BookRepository>();
-//automapper config
-builder.Services.AddAutoMapper(typeof(Program));
+
+
 var app = builder.Build();
 // Uncomment it when you run the project first time, It will registered an admin
 //await SeedData.RegisterAdminUser(app);
