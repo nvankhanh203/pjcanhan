@@ -26,6 +26,7 @@ builder.Services.AddTransient<IFileService, FileService>();
 builder.Services.AddTransient<IBookRepository, BookRepository>();
 
 
+
 var app = builder.Build();
 // Uncomment it when you run the project first time, It will registered an admin
 //await SeedData.RegisterAdminUser(app);

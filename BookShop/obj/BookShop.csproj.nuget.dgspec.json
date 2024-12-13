@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\BookShop\\BookShop.csproj": {}
+    "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\bookshop\\BookShop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\BookShop\\BookShop.csproj": {
+    "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\bookshop\\BookShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\BookShop\\BookShop.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\bookshop\\BookShop.csproj",
         "projectName": "BookShop",
-        "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\BookShop\\BookShop.csproj",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\bookshop\\BookShop.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\BookShop\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\pjcanhan\\bookshop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -47,6 +47,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
               "target": "Package",
               "version": "[8.0.4, )"
