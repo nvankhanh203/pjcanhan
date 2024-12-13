@@ -3,9 +3,11 @@ using BookShop.Models;
 using BookShop.Models.DTOs;
 using BookShop.Repositories;
 using BookShop.Shared;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace BookShop.Controllers;
 public class BookController : Controller
@@ -13,14 +15,17 @@ public class BookController : Controller
     private readonly IBookRepository _bookRepo;
     private readonly IGenreRepository _genreRepo;
     private readonly IFileService _fileService;
+    private readonly IMapper _mapper;
 
 
-    public BookController(IBookRepository bookRepo, IGenreRepository genreRepo, IFileService fileService)
+    public BookController(IBookRepository bookRepo, IGenreRepository genreRepo, IFileService fileService, IMapper mapper)
     {
         _bookRepo = bookRepo;
         _genreRepo = genreRepo;
         _fileService = fileService;
+        _mapper = mapper;
     }
+
 
     public async Task<IActionResult> Index()
     {
@@ -56,31 +61,23 @@ public class BookController : Controller
         {
             if (bookToAdd.ImageFile != null)
             {
-                if(bookToAdd.ImageFile.Length> 1 * 1024 * 1024)
+                if (bookToAdd.ImageFile.Length > 1 * 1024 * 1024)
                 {
                     throw new InvalidOperationException("Image file can not exceed 1 MB");
                 }
-                string[] allowedExtensions = [".jpeg",".jpg",".png"];
-                string imageName=await _fileService.SaveFile(bookToAdd.ImageFile, allowedExtensions);
+                string[] allowedExtensions = [".jpeg", ".jpg", ".png"];
+                string imageName = await _fileService.SaveFile(bookToAdd.ImageFile, allowedExtensions);
                 bookToAdd.Image = imageName;
             }
-            // manual mapping of BookDTO -> Book
-            Book book = new()
-            {
-                Id = bookToAdd.Id,
-                BookName = bookToAdd.BookName,
-                AuthorName = bookToAdd.AuthorName,
-                Image = bookToAdd.Image,
-                GenreId = bookToAdd.GenreId,
-                Price = bookToAdd.Price
-            };
+            // auto mapping of BookDTO -> Book
+            Book book = _mapper.Map<Book>(bookToAdd);
             await _bookRepo.AddBook(book);
             TempData["successMessage"] = "Book is added successfully";
             return RedirectToAction(nameof(AddBook));
         }
         catch (InvalidOperationException ex)
         {
-            TempData["errorMessage"]= ex.Message;
+            TempData["errorMessage"] = ex.Message;
             return View(bookToAdd);
         }
         catch (FileNotFoundException ex)
@@ -98,7 +95,7 @@ public class BookController : Controller
     public async Task<IActionResult> UpdateBook(int id)
     {
         var book = await _bookRepo.GetBookById(id);
-        if(book==null)
+        if (book == null)
         {
             TempData["errorMessage"] = $"Book with the id: {id} does not found";
             return RedirectToAction(nameof(Index));
@@ -107,19 +104,13 @@ public class BookController : Controller
         {
             Text = genre.GenreName,
             Value = genre.Id.ToString(),
-            Selected=genre.Id==book.GenreId
+            Selected = genre.Id == book.GenreId
         });
-        BookDTO bookToUpdate = new() 
-        { 
-            GenreList = genreSelectList,
-            BookName=book.BookName,
-            AuthorName=book.AuthorName,
-            GenreId=book.GenreId,
-            Price=book.Price,
-            Image=book.Image 
-        };
+        BookDTO bookToUpdate = _mapper.Map<BookDTO>(book);
+        bookToUpdate.GenreList = genreSelectList;
         return View(bookToUpdate);
     }
+
 
     [HttpPost]
     public async Task<IActionResult> UpdateBook(BookDTO bookToUpdate)
@@ -128,7 +119,7 @@ public class BookController : Controller
         {
             Text = genre.GenreName,
             Value = genre.Id.ToString(),
-            Selected=genre.Id==bookToUpdate.GenreId
+            Selected = genre.Id == bookToUpdate.GenreId
         });
         bookToUpdate.GenreList = genreSelectList;
 
@@ -150,19 +141,11 @@ public class BookController : Controller
                 oldImage = bookToUpdate.Image;
                 bookToUpdate.Image = imageName;
             }
-            // manual mapping of BookDTO -> Book
-            Book book = new()
-            {
-                Id=bookToUpdate.Id,
-                BookName = bookToUpdate.BookName,
-                AuthorName = bookToUpdate.AuthorName,
-                GenreId = bookToUpdate.GenreId,
-                Price = bookToUpdate.Price,
-                Image = bookToUpdate.Image
-            };
+            // auto mapping of BookDTO -> Book
+            Book book = _mapper.Map<Book>(bookToUpdate);
             await _bookRepo.UpdateBook(book);
             // if image is updated, then delete it from the folder too
-            if(!string.IsNullOrWhiteSpace(oldImage))
+            if (!string.IsNullOrWhiteSpace(oldImage))
             {
                 _fileService.DeleteFile(oldImage);
             }
@@ -220,3 +203,4 @@ public class BookController : Controller
     }
 
 }
+

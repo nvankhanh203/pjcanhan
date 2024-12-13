@@ -1,3 +1,4 @@
+using AutoMapper;
 using BookShop.Models.DTOs;
 using BookShop.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -8,27 +9,26 @@ namespace BookShop.Controllers
     public class StockController : Controller
     {
         private readonly IStockRepository _stockRepo;
+        private readonly IMapper _mapper;
 
-        public StockController(IStockRepository stockRepo)
+        public StockController(IStockRepository stockRepo, IMapper mapper)
         {
             _stockRepo = stockRepo;
+            _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index(string sTerm="")
+        public async Task<IActionResult> Index(string sTerm = "")
         {
-            var stocks=await _stockRepo.GetStocks(sTerm);
+            var stocks = await _stockRepo.GetStocks(sTerm);
             return View(stocks);
         }
 
         public async Task<IActionResult> ManangeStock(int bookId)
         {
             var existingStock = await _stockRepo.GetStockByBookId(bookId);
-            var stock = new StockDTO
-            {
-                BookId = bookId,
-                Quantity = existingStock != null
-            ? existingStock.Quantity : 0
-            };
+            var stock = _mapper.Map<StockDTO>(existingStock);
+            if (stock == null)
+                stock = new StockDTO { BookId = bookId, Quantity = 0 };
             return View(stock);
         }
 
@@ -51,3 +51,4 @@ namespace BookShop.Controllers
         }
     }
 }
+

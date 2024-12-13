@@ -1,3 +1,4 @@
+using AutoMapper;
 using BookShop.Models;
 using BookShop.Models.DTOs;
 using BookShop.Repositories;
@@ -9,10 +10,12 @@ namespace BookShop.Controllers
     public class GenreController : Controller
     {
         private readonly IGenreRepository _genreRepo;
+        private readonly IMapper _mapper;
 
-        public GenreController(IGenreRepository genreRepo)
+        public GenreController(IGenreRepository genreRepo, IMapper mapper)
         {
             _genreRepo = genreRepo;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -29,18 +32,18 @@ namespace BookShop.Controllers
         [HttpPost]
         public async Task<IActionResult> AddGenre(GenreDTO genre)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(genre);
             }
             try
             {
-                var genreToAdd = new Genre { GenreName = genre.GenreName, Id = genre.Id };
+                var genreToAdd = _mapper.Map<Genre>(genre);
                 await _genreRepo.AddGenre(genreToAdd);
                 TempData["successMessage"] = "Genre added successfully";
                 return RedirectToAction(nameof(AddGenre));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["errorMessage"] = "Genre could not added!";
                 return View(genre);
@@ -53,11 +56,7 @@ namespace BookShop.Controllers
             var genre = await _genreRepo.GetGenreById(id);
             if (genre is null)
                 throw new InvalidOperationException($"Genre with id: {id} does not found");
-            var genreToUpdate = new GenreDTO
-            {
-                Id = genre.Id,
-                GenreName = genre.GenreName
-            };
+            var genreToUpdate = _mapper.Map<GenreDTO>(genre);
             return View(genreToUpdate);
         }
 
@@ -70,7 +69,7 @@ namespace BookShop.Controllers
             }
             try
             {
-                var genre = new Genre { GenreName = genreToUpdate.GenreName, Id = genreToUpdate.Id };
+                var genre = _mapper.Map<Genre>(genreToUpdate);
                 await _genreRepo.UpdateGenre(genre);
                 TempData["successMessage"] = "Genre is updated successfully";
                 return RedirectToAction(nameof(Index));
@@ -95,3 +94,4 @@ namespace BookShop.Controllers
 
     }
 }
+
