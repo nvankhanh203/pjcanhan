@@ -39,7 +39,9 @@ namespace BookShop.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var requestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier ?? "unknown";
+            return View(new ErrorViewModel { RequestId = requestId });
         }
+
     }
 }

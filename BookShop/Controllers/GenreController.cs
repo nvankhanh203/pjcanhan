@@ -23,7 +23,7 @@ namespace BookShop.Controllers
 
         public IActionResult AddGenre()
         {
-            return View();
+            return View("AddGenre");
         }
 
         [HttpPost]
