@@ -1,9 +1,9 @@
-﻿using BookShoppingCartMvcUI.Data;
-using BookShoppingCartMvcUI.Models;
-using BookShoppingCartMvcUI.Models.DTOs;
+﻿using BookShop.Data;
+using BookShop.Models;
+using BookShop.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookShoppingCartMvcUI.Repositories
+namespace BookShop.Repositories
 {
     public class StockRepository : IStockRepository
     {

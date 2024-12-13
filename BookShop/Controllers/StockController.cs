@@ -1,9 +1,9 @@
-using BookShoppingCartMvcUI.Models.DTOs;
-using BookShoppingCartMvcUI.Repositories;
+using BookShop.Models.DTOs;
+using BookShop.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookShoppingCartMvcUI.Controllers
+namespace BookShop.Controllers
 {
     public class StockController : Controller
     {

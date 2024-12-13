@@ -1,6 +1,6 @@
-﻿using BookShoppingCartMvcUI.Models;
+﻿using BookShop.Models;
 
-namespace BookShoppingCartMvcUI
+namespace BookShop
 {
     public interface IHomeRepository
     {

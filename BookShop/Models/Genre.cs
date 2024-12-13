@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace BookShoppingCartMvcUI.Models
+namespace BookShop.Models
 {
     [Table("Genre")]
     public class Genre

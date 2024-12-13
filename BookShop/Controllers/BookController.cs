@@ -1,13 +1,13 @@
-using BookShoppingCartMvcUI;
-using BookShoppingCartMvcUI.Models;
-using BookShoppingCartMvcUI.Models.DTOs;
-using BookShoppingCartMvcUI.Repositories;
-using BookShoppingCartMvcUI.Shared;
+using BookShop;
+using BookShop.Models;
+using BookShop.Models.DTOs;
+using BookShop.Repositories;
+using BookShop.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace BookShoppingCartMvcUI.Controllers;
+namespace BookShop.Controllers;
 public class BookController : Controller
 {
     private readonly IBookRepository _bookRepo;
