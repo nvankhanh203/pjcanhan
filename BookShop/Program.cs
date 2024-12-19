@@ -1,5 +1,5 @@
-using BookShoppingCartMvcUI;
-using BookShoppingCartMvcUI.Shared;
+using BookShop;
+using BookShop.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

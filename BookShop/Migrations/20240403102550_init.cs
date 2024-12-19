@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BookShoppingCartMvcUI.Migrations
+namespace BookShop.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration

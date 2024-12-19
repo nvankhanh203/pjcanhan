@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookShoppingCartMvcUI.Repositories;
+namespace BookShop.Repositories;
 
 [Authorize(Roles = nameof(Roles.Admin))]
 public class ReportRepository : IReportRepository

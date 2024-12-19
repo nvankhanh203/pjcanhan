@@ -1,9 +1,9 @@
-﻿using BookShoppingCartMvcUI.Shared;
+﻿using BookShop.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AutoMapper;
-namespace BookShoppingCartMvcUI.Controllers;
+namespace BookShop.Controllers;
 
 [Authorize(Roles = nameof(Roles.Admin))]
 public class BookController : Controller

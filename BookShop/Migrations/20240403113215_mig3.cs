@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BookShoppingCartMvcUI.Migrations
+namespace BookShop.Migrations
 {
     /// <inheritdoc />
     public partial class mig3 : Migration

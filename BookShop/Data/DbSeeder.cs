@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using BookShoppingCartMvcUI.Constants;
+using BookShop.Constants;
 using System;
 
-namespace BookShoppingCartMvcUI.Data
+namespace BookShop.Data
 {
     public class DbSeeder
     {

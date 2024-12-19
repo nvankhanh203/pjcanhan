@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookShoppingCartMvcUI.Controllers
+namespace BookShop.Controllers
 {
     [Authorize]
     public class CartController : Controller

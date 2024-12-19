@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using BookShoppingCartMvcUI.Constants;
+using BookShop.Constants;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
-namespace BookShoppingCartMvcUI.Areas.Identity.Pages.Account
+namespace BookShop.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {

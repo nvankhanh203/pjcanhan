@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace BookShoppingCartMvcUI.Areas.Identity.Pages.Account
+namespace BookShop.Areas.Identity.Pages.Account
 {
     public class ResetPasswordModel : PageModel
     {
