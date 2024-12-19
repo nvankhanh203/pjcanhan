@@ -1,10 +1,9 @@
-using BookShop.Models;
-using BookShop.Models;
-using BookShop.Models.DTOs;
+﻿using BookShoppingCartMvcUI.Models;
+using BookShoppingCartMvcUI.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BookShop.Controllers
+namespace BookShoppingCartMvcUI.Controllers
 {
     public class HomeController : Controller
     {
@@ -39,10 +38,7 @@ namespace BookShop.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            var requestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier ?? "unknown";
-            return View(new ErrorViewModel { RequestId = requestId });
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }
-

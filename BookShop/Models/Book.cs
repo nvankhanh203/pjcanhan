@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookShop.Models
+namespace BookShoppingCartMvcUI.Models
 {
     [Table("Book")]
     public class Book
@@ -21,7 +21,8 @@ namespace BookShop.Models
         [Required]
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
-
+        public List<OrderDetail> OrderDetail { get; set; }
+        public List<CartDetail> CartDetail { get; set; }
         public Stock Stock { get; set; }
 
         [NotMapped]

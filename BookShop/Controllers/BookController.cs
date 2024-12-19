@@ -1,18 +1,14 @@
-using BookShop;
-using BookShop.Models;
-using BookShop.Models.DTOs;
-using BookShop.Repositories;
-using BookShop.Shared;
-using AutoMapper;
+﻿using BookShoppingCartMvcUI.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using AutoMapper;
+namespace BookShoppingCartMvcUI.Controllers;
 
-
-namespace BookShop.Controllers;
+[Authorize(Roles = nameof(Roles.Admin))]
 public class BookController : Controller
 {
-    private readonly IBookRepository _bookRepo;
+   private readonly IBookRepository _bookRepo;
     private readonly IGenreRepository _genreRepo;
     private readonly IFileService _fileService;
     private readonly IMapper _mapper;

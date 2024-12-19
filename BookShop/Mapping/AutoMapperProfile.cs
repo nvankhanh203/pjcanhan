@@ -1,6 +1,4 @@
 using AutoMapper;
-using BookShop.Models;
-using BookShop.Models.DTOs;
 
 public class AutoMapperProfile : Profile
 {
