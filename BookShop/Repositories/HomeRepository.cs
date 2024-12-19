@@ -1,10 +1,8 @@
 ﻿
 
-using BookShop.Data;
-using BookShop.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookShop.Repositories
+namespace BookShoppingCartMvcUI.Repositories
 {
     public class HomeRepository : IHomeRepository
     {

@@ -1,6 +1,6 @@
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookShop.Models
+namespace BookShoppingCartMvcUI.Models
 {
     [Table("Stock")]
     public class Stock

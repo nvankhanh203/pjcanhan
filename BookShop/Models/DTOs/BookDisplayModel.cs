@@ -1,4 +1,4 @@
-namespace BookShop.Models.DTOs
+﻿namespace BookShoppingCartMvcUI.Models.DTOs
 {
     public class BookDisplayModel
     {

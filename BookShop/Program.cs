@@ -1,7 +1,5 @@
-using BookShop;
-using BookShop.Data;
-using BookShop.Repositories;
-using BookShop.Shared;
+using BookShoppingCartMvcUI;
+using BookShoppingCartMvcUI.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,15 +18,21 @@ builder.Services
     .AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IHomeRepository, HomeRepository>();
+builder.Services.AddTransient<ICartRepository, CartRepository>();
+builder.Services.AddTransient<IUserOrderRepository, UserOrderRepository>();
 builder.Services.AddTransient<IStockRepository, StockRepository>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
 builder.Services.AddTransient<IFileService, FileService>();
 builder.Services.AddTransient<IBookRepository, BookRepository>();
-
-
+builder.Services.AddTransient<IReportRepository, ReportRepository>();
+builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 // Uncomment it when you run the project first time, It will registered an admin
-//await SeedData.RegisterAdminUser(app);
+using (var scope = app.Services.CreateScope())
+{
+    await DbSeeder.SeedDefaultData(scope.ServiceProvider);
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

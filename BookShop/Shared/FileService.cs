@@ -1,4 +1,4 @@
-﻿namespace BookShop.Shared;
+﻿namespace BookShoppingCartMvcUI.Shared;
 
 public interface IFileService
 {

@@ -1,12 +1,10 @@
-using AutoMapper;
-using BookShop.Models;
-using BookShop.Models.DTOs;
-using BookShop.Repositories;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookShop.Controllers
+namespace BookShoppingCartMvcUI.Controllers
 {
+    [Authorize(Roles = nameof(Roles.Admin))]
     public class GenreController : Controller
     {
         private readonly IGenreRepository _genreRepo;
@@ -26,13 +24,13 @@ namespace BookShop.Controllers
 
         public IActionResult AddGenre()
         {
-            return View("AddGenre");
+            return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> AddGenre(GenreDTO genre)
         {
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return View(genre);
             }
@@ -43,7 +41,7 @@ namespace BookShop.Controllers
                 TempData["successMessage"] = "Genre added successfully";
                 return RedirectToAction(nameof(AddGenre));
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 TempData["errorMessage"] = "Genre could not added!";
                 return View(genre);

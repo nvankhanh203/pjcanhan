@@ -1,11 +1,10 @@
-using AutoMapper;
-using BookShop.Models.DTOs;
-using BookShop.Repositories;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookShop.Controllers
+namespace BookShoppingCartMvcUI.Controllers
 {
+    [Authorize(Roles=nameof(Roles.Admin))]
     public class StockController : Controller
     {
         private readonly IStockRepository _stockRepo;
